@@ -1,7 +1,7 @@
 ---
 title: "PS270 Final Project"
-author: "Your Name Here"
-description: "My final project"
+author: "Wade Lindmark"
+description: "A Study On the Modern American Political Partisanship"
 output:
   distill::distill_article:
     self_contained: false
@@ -9,6 +9,6 @@ output:
 
 
 
-## Project thoughts
+## Thoughts on my Research
 
-I am interested in exploring data related to...
+I am interested in exploring data related to political partisanship. We are presently living in an America where people have vastly different perceptions of the other party, demonizing one side or the other. If I can find some studies on it, I think I can do some solid research and come to good conclusions about the state of American polarization today.
