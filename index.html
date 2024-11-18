@@ -32,7 +32,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -115,7 +115,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["index_files/anchor-4.2.2/anchor.min.js","index_files/bowser-1.9.3/bowser.min.js","index_files/distill-2.2.21/template.v2.js","index_files/header-attrs-2.17/header-attrs.js","index_files/header-attrs-2.28/header-attrs.js","index_files/jquery-3.6.0/jquery-3.6.0.js","index_files/jquery-3.6.0/jquery-3.6.0.min.js","index_files/jquery-3.6.0/jquery-3.6.0.min.map","index_files/popper-2.6.0/popper.min.js","index_files/tippy-6.2.7/tippy-bundle.umd.min.js","index_files/tippy-6.2.7/tippy-light-border.css","index_files/tippy-6.2.7/tippy.css","index_files/tippy-6.2.7/tippy.umd.min.js","index_files/webcomponents-2.0.0/webcomponents.js"]}
+  {"type":"character","attributes":{},"value":["index_files/anchor-4.2.2/anchor.min.js","index_files/bowser-1.9.3/bowser.min.js","index_files/data-P8Evn (1).csv","index_files/data-Sc9Xf.csv","index_files/data-x8iSs.csv","index_files/distill-2.2.21/template.v2.js","index_files/figure-html5/unnamed-chunk-4-1.png","index_files/figure-html5/unnamed-chunk-5-1.png","index_files/figure-html5/unnamed-chunk-8-1.png","index_files/header-attrs-2.17/header-attrs.js","index_files/header-attrs-2.28/header-attrs.js","index_files/header-attrs-2.29/header-attrs.js","index_files/jquery-3.6.0/jquery-3.6.0.js","index_files/jquery-3.6.0/jquery-3.6.0.min.js","index_files/jquery-3.6.0/jquery-3.6.0.min.map","index_files/popper-2.6.0/popper.min.js","index_files/tippy-6.2.7/tippy-bundle.umd.min.js","index_files/tippy-6.2.7/tippy-light-border.css","index_files/tippy-6.2.7/tippy.css","index_files/tippy-6.2.7/tippy.umd.min.js","index_files/webcomponents-2.0.0/webcomponents.js"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
   <!--/radix_placeholder_navigation_in_header-->
@@ -1497,7 +1497,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </script>
 
   <!--/radix_placeholder_distill-->
-  <script src="index_files/header-attrs-2.28/header-attrs.js"></script>
+  <script src="index_files/header-attrs-2.29/header-attrs.js"></script>
   <script src="index_files/jquery-3.6.0/jquery-3.6.0.min.js"></script>
   <script src="index_files/popper-2.6.0/popper.min.js"></script>
   <link href="index_files/tippy-6.2.7/tippy.css" rel="stylesheet" />
@@ -1543,17 +1543,216 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </div>
 
 <div class="d-article">
-<p>##Thoughts on my Research</p>
+<h2 id="thoughts-on-my-research">Thoughts on my Research</h2>
 <p>I am interested in exploring data related to political partisanship. We are presently living in an America where people have vastly different perceptions of the other party, demonizing one side or the other. If I can find some studies on it, I think I can do some solid research and come to good conclusions about the state of American polarization today.</p>
-<p>##Progress #2</p>
+<h2 id="progress-2">Progress #2</h2>
 <p>My research question is this:</p>
 <p>How has the usage of media over time contributed to political partisanship in the United States?</p>
 <p>My hypothesis is that as media has developed over time, from print media to radio to television to our phones, it has paradoxically driven us further apart from one another because it has become so easy to take what is seen on social media or the mainstream media as true. In essence, my hypothesis is that, as media has developed, political partisanship has increased, and will continue to.</p>
-<p>In order to measure this, my explanatory value will be a time-series data set that will observe individuals’ use of media sources/outlets over time, and how those sources/outlets themselves’ leanings have changed over time.</p>
-<p>For my variable of interest, I want to look at polarization indicators observing how a given individual affiliated with a certain party changes their degree of distrust towards the opposition party, or by tracking respondents’ beliefs of what the other side thinks of themselves through cognitive dissonance. I would measure it by asking respondents to answer where they believe the other party falls on a certain issue, with 1 being least extreme and 100 being most extreme.</p>
+<p>In order to measure this, my explanatory value will be a time-series data set that will observe how Americans’ trust in media has changed over time as it has changed with trust in government.</p>
+<p>For my variable of interest, I want to look at trust indicators observing how a given individual affiliated with a certain party changes their degree of distrust towards the mainstream media, or by tracking respondents’ beliefs of what the other side thinks of themselves through cognitive dissonance. I would measure it by asking respondents to answer where they believe the other party falls on a certain issue, with 1 being least extreme and 100 being most extreme.</p>
 <p>If the observed pattern demonstrates that individuals who are largely gathering information from very partisan outlets are progressively growing in their distrust of the opposition party or of their key positions. For the sources themselves, it would show their readers/viewers having more distrust for the opposition the farther away from center the source shifts.</p>
 <p>If a pattern were to show that media sources shifting their ideology is not correlated with increased rates of distrust of the opposition among their readers/viewers, or if individuals’ usage of more partisan news sources over time does not indicate increased distrust towards the opposition, those indicators would disprove my hypothesis.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<h2 id="progress-3">Progress #3</h2>
+<p>I’ve imported two datasets, <code>trustgovt</code>, and <code>trustinmedia</code>. I’m going to edit them so that they fit the time-series data I’m looking to create.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://tidyverse.tidyverse.org'>tidyverse</a></span><span class='op'>)</span></span>
+<span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/tidymodels/infer'>infer</a></span><span class='op'>)</span></span>
+<span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://dplyr.tidyverse.org'>dplyr</a></span><span class='op'>)</span></span></code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>trustwmedia</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://readr.tidyverse.org/reference/read_delim.html'>read_csv</a></span><span class='op'>(</span><span class='st'>"index_files/data-P8Evn (1).csv"</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>colnames</a></span><span class='op'>(</span><span class='va'>trustwmedia</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='va'>trustwmedia</span><span class='op'>[</span><span class='fl'>1</span>, <span class='op'>]</span></span>
+<span></span>
+<span><span class='va'>trustwmedia</span> <span class='op'>&lt;-</span> <span class='va'>trustwmedia</span><span class='op'>[</span><span class='op'>-</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span><span class='op'>)</span>, <span class='op'>]</span></span>
+<span></span>
+<span><span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>colnames</a></span><span class='op'>(</span><span class='va'>trustwmedia</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Year"</span>, <span class='st'>"Great Deal %"</span>, <span class='st'>"Not Very Much %"</span>, <span class='st'>"None At All %"</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>trustwmedia</span></span></code></pre>
+</div>
+<pre><code># A tibble: 25 × 4
+    Year `Great Deal %` `Not Very Much %` `None At All %`
+   &lt;dbl&gt;          &lt;dbl&gt;             &lt;dbl&gt;           &lt;dbl&gt;
+ 1  1997             58                31              10
+ 2  1998             55                35               9
+ 3  1999             55                34              11
+ 4  2000             51                37              12
+ 5  2001             53                33              14
+ 6  2002             54                35              11
+ 7  2003             54                35              11
+ 8  2004             44                39              16
+ 9  2005             50                37              12
+10  2007             47                35              17
+# ℹ 15 more rows</code></pre>
+</div>
+<p>Now, I’ve loaded and modified my data as needed, it’s time to create some graphs.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>trustmedialong</span> <span class='op'>&lt;-</span> <span class='va'>trustwmedia</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://tidyr.tidyverse.org/reference/pivot_longer.html'>pivot_longer</a></span><span class='op'>(</span>cols <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Great Deal %"</span>, <span class='st'>"Not Very Much %"</span>, <span class='st'>"None At All %"</span><span class='op'>)</span>,</span>
+<span>               names_to <span class='op'>=</span> <span class='st'>"Trust_Level"</span>,</span>
+<span>               values_to <span class='op'>=</span> <span class='st'>"Percentage"</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>trustmedialong</span></span></code></pre>
+</div>
+<pre><code># A tibble: 75 × 3
+    Year Trust_Level     Percentage
+   &lt;dbl&gt; &lt;chr&gt;                &lt;dbl&gt;
+ 1  1997 Great Deal %            58
+ 2  1997 Not Very Much %         31
+ 3  1997 None At All %           10
+ 4  1998 Great Deal %            55
+ 5  1998 Not Very Much %         35
+ 6  1998 None At All %            9
+ 7  1999 Great Deal %            55
+ 8  1999 Not Very Much %         34
+ 9  1999 None At All %           11
+10  2000 Great Deal %            51
+# ℹ 65 more rows</code></pre>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>trustmedialong</span><span class='op'>$</span><span class='va'>Year</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/character.html'>as.character</a></span><span class='op'>(</span><span class='va'>trustmedialong</span><span class='op'>$</span><span class='va'>Year</span><span class='op'>)</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>trust_data_interpolated</span> <span class='op'>&lt;-</span> <span class='va'>trustmedialong</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>Trust_Level</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/do.html'>do</a></span><span class='op'>(</span><span class='op'>{</span></span>
+<span>    <span class='va'>approx_data</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/approxfun.html'>approx</a></span><span class='op'>(</span></span>
+<span>      x <span class='op'>=</span> <span class='va'>.</span><span class='op'>$</span><span class='va'>Year</span>, </span>
+<span>      y <span class='op'>=</span> <span class='va'>.</span><span class='op'>$</span><span class='va'>Percentage</span>, </span>
+<span>      xout <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>2006</span><span class='op'>)</span></span>
+<span>    <span class='op'>)</span></span>
+<span>    <span class='va'>new_row</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>Year <span class='op'>=</span> <span class='fl'>2006</span>, </span>
+<span>                          Percentage <span class='op'>=</span> <span class='va'>approx_data</span><span class='op'>$</span><span class='va'>y</span>,</span>
+<span>                          Trust_Level <span class='op'>=</span> <span class='va'>.</span><span class='op'>$</span><span class='va'>Trust_Level</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>]</span><span class='op'>)</span></span>
+<span>    <span class='fu'><a href='https://rdrr.io/r/base/cbind.html'>rbind</a></span><span class='op'>(</span><span class='va'>.</span>, <span class='va'>new_row</span><span class='op'>)</span></span>
+<span>  <span class='op'>}</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>ungroup</a></span><span class='op'>(</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>trust_data_interpolated</span></span></code></pre>
+</div>
+<pre><code># A tibble: 78 × 3
+    Year Trust_Level  Percentage
+   &lt;dbl&gt; &lt;chr&gt;             &lt;dbl&gt;
+ 1  1997 Great Deal %         58
+ 2  1998 Great Deal %         55
+ 3  1999 Great Deal %         55
+ 4  2000 Great Deal %         51
+ 5  2001 Great Deal %         53
+ 6  2002 Great Deal %         54
+ 7  2003 Great Deal %         54
+ 8  2004 Great Deal %         44
+ 9  2005 Great Deal %         50
+10  2007 Great Deal %         47
+# ℹ 68 more rows</code></pre>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>trust_data_interpolated</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>Year</span>, y <span class='op'>=</span> <span class='va'>Percentage</span>, color <span class='op'>=</span> <span class='va'>Trust_Level</span>, group <span class='op'>=</span> <span class='va'>Trust_Level</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_path.html'>geom_line</a></span><span class='op'>(</span>linewidth <span class='op'>=</span> <span class='fl'>1.5</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span></span>
+<span>    title <span class='op'>=</span> <span class='st'>"Public Trust in the Media (1997-2022)"</span>,</span>
+<span>    x <span class='op'>=</span> <span class='st'>"Year"</span>,</span>
+<span>    y <span class='op'>=</span> <span class='st'>"Percentage (%)"</span>,</span>
+<span>    color <span class='op'>=</span> <span class='st'>"Trust Level"</span></span>
+<span>  <span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_continuous.html'>scale_x_continuous</a></span><span class='op'>(</span>limits <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1997</span>, <span class='fl'>2022</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
+</div>
+<p><img src="index_files/figure-html5/unnamed-chunk-5-1.png" width="624" /></p>
+</div>
+<h2 id="progress-4">Progress #4</h2>
+<p>Now that we have our graph on public trust in the media, we need to take a look at what the graph tells us.</p>
+<p>First off, the Great Deal % line tells us where observants reported having a “great deal of trust” in the media. As such, the None At All % line and Not very Much % line indicate no trust in the media and difficulty in trusting the media, respectively.</p>
+<p>There’s a few trends we can analyze here. Beginning at the start of the dataset, in the year 1999, we see over 50% trust in the media, a level that rapidly declines for a decade and a half before hitting a low point at 32% in 2016, the year Donald Trump was first elected to the presidency. This specific issue is a bit of an outlier, since trust in the media plummeted due to the allegations of Russian involvement to sway the results of the 2016 election.</p>
+<p>A similar conclusion can be drawn from the green line here, the line that represents little to no trust in the media at all. Over the timeframe the data shows a steadily increasing percentage of the American populace not trusting the mainstream media.</p>
+<p>However, in the interest of answering our research question, we need to take a look at how people affiliated with certain political parties trust the media, and how people trust one another.</p>
+<p>Let’s look at a change over this timeframe with trust of certain political parties in the mainstream media (and is there a pattern?)</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>partytrust_m</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://readr.tidyverse.org/reference/read_delim.html'>read_csv</a></span><span class='op'>(</span><span class='st'>"index_files/data-Sc9Xf.csv"</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>colnames</a></span><span class='op'>(</span><span class='va'>partytrust_m</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='va'>partytrust_m</span><span class='op'>[</span><span class='fl'>1</span>, <span class='op'>]</span></span>
+<span></span>
+<span><span class='va'>partytrust_m</span> <span class='op'>&lt;-</span> <span class='va'>partytrust_m</span><span class='op'>[</span><span class='op'>-</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span><span class='op'>)</span>, <span class='op'>]</span></span>
+<span></span>
+<span><span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>colnames</a></span><span class='op'>(</span><span class='va'>partytrust_m</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Year"</span>, <span class='st'>"Republican %"</span>, <span class='st'>"Independent %"</span>, <span class='st'>"Democrat %"</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>partytrust_m</span></span></code></pre>
+</div>
+<pre><code># A tibble: 26 × 4
+    Year `Republican %` `Independent %` `Democrat %`
+   &lt;dbl&gt; &lt;chr&gt;          &lt;chr&gt;           &lt;chr&gt;       
+ 1  1997 41%            53%             64%         
+ 2  1998 52%            53%             59%         
+ 3  1999 46%            55%             61%         
+ 4  2000 47%            53%             53%         
+ 5  2001 39%            52%             65%         
+ 6  2002 49%            52%             59%         
+ 7  2003 44%            53%             66%         
+ 8  2004 31%            44%             59%         
+ 9  2005 31%            49%             70%         
+10  2007 33%            41%             66%         
+# ℹ 16 more rows</code></pre>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>party_tm_long</span> <span class='op'>&lt;-</span> <span class='va'>partytrust_m</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://tidyr.tidyverse.org/reference/pivot_longer.html'>pivot_longer</a></span><span class='op'>(</span>cols <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Republican %"</span>, <span class='st'>"Independent %"</span>, <span class='st'>"Democrat %"</span><span class='op'>)</span>,</span>
+<span>               names_to <span class='op'>=</span> <span class='st'>"Party_perc"</span>,</span>
+<span>               values_to <span class='op'>=</span> <span class='st'>"Percentage"</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>party_tm_long</span> <span class='op'>&lt;-</span> <span class='va'>party_tm_long</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>Percentage <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/grep.html'>gsub</a></span><span class='op'>(</span><span class='st'>"%"</span>, <span class='st'>""</span>, <span class='va'>Percentage</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>Year</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>party_tm_long</span></span></code></pre>
+</div>
+<pre><code># A tibble: 78 × 3
+# Groups:   Year [26]
+    Year Party_perc    Percentage
+   &lt;dbl&gt; &lt;chr&gt;              &lt;dbl&gt;
+ 1  1997 Republican %          41
+ 2  1997 Independent %         53
+ 3  1997 Democrat %            64
+ 4  1998 Republican %          52
+ 5  1998 Independent %         53
+ 6  1998 Democrat %            59
+ 7  1999 Republican %          46
+ 8  1999 Independent %         55
+ 9  1999 Democrat %            61
+10  2000 Republican %          47
+# ℹ 68 more rows</code></pre>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>party_tm_long</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>Year</span>, y <span class='op'>=</span> <span class='va'>Percentage</span>, color <span class='op'>=</span> <span class='va'>Party_perc</span>, group <span class='op'>=</span> <span class='va'>Party_perc</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_path.html'>geom_line</a></span><span class='op'>(</span>linewidth <span class='op'>=</span> <span class='fl'>1.5</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span></span>
+<span>    title <span class='op'>=</span> <span class='st'>"Partisan Trust in the Mass Media (1997-2022)"</span>,</span>
+<span>    x <span class='op'>=</span> <span class='st'>"Year"</span>,</span>
+<span>    y <span class='op'>=</span> <span class='st'>"Percentage (%)"</span>,</span>
+<span>    color <span class='op'>=</span> <span class='st'>"Political Party %"</span></span>
+<span>  <span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_continuous.html'>scale_x_continuous</a></span><span class='op'>(</span>limits <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1997</span>, <span class='fl'>2022</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_manual.html'>scale_color_manual</a></span><span class='op'>(</span>values <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span></span>
+<span>    <span class='st'>"Democrat %"</span> <span class='op'>=</span> <span class='st'>"royalblue"</span>,</span>
+<span>    <span class='st'>"Republican %"</span> <span class='op'>=</span> <span class='st'>"firebrick3"</span>,</span>
+<span>    <span class='st'>"Independent %"</span> <span class='op'>=</span> <span class='st'>"gold2"</span></span>
+<span>  <span class='op'>)</span><span class='op'>)</span></span></code></pre>
+</div>
+<p><img src="index_files/figure-html5/unnamed-chunk-8-1.png" width="624" /></p>
+</div>
+<p>By looking at this graph, we can see some interesting trends that don’t follow the trends of the US population at large. While trust for independents and Republicans trend down over time, particularly among Republicans following Donald Trump’s election, Democrats’ trust in the mass media grew quite a bit, especially during Trump’s presidency.</p>
+<p>However, in the years immediately before and after Trump’s presidency, Democrats showed a stark decrease in trust, particularly during times of political conflict. This trend could be influenced by factors such as perceived media bias or coverage of the Democratic Party’s political issues.</p>
+<p>Conversely, Republicans tend to have fluctuating levels of trust, with an evident increase in trust during Republican administrations, especially under George W. Bush, where media outlets were often critical of the Democratic Party. This pattern is closely tied to the framing of political events, as Republican media outlets tend to present news in a more favorable light for their party, which may explain the growing trust among their base during Republican leadership.</p>
+<p>This is a clear indicator of the rising role of media in creating polarization. Republicans have framed mass media as “fake news,” alleging mass media to be actively mischaracterizing the actions of Republican governments and covering up fraud of Democratic governments.</p>
+<p>This partisan divide in media trust is significant because it suggests a polarization in public opinion, with individuals more likely to trust media that aligns with their political views and narratives. The data shows that Independents, who do not align with either party, have consistently shown lower levels of trust in the media overall. This could indicate that these individuals view the media as too partisan or unreliable, contributing to a sense of distrust across the board.</p>
+<p>Thus, if we are to answer this question further, we must also collect information on trust in fellow Americans and the American government as a whole. Both have trended down since Richard Nixon’s Watergate scandal caused his resignation in August of 1974, but looking more closely at these values could indicate specific years or trends that we ought to investigate further.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
