@@ -115,7 +115,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["index_files/anchor-4.2.2/anchor.min.js","index_files/bowser-1.9.3/bowser.min.js","index_files/data-P8Evn (1).csv","index_files/data-Sc9Xf.csv","index_files/data-x8iSs.csv","index_files/distill-2.2.21/template.v2.js","index_files/figure-html5/unnamed-chunk-4-1.png","index_files/figure-html5/unnamed-chunk-5-1.png","index_files/figure-html5/unnamed-chunk-8-1.png","index_files/header-attrs-2.17/header-attrs.js","index_files/header-attrs-2.28/header-attrs.js","index_files/header-attrs-2.29/header-attrs.js","index_files/jquery-3.6.0/jquery-3.6.0.js","index_files/jquery-3.6.0/jquery-3.6.0.min.js","index_files/jquery-3.6.0/jquery-3.6.0.min.map","index_files/popper-2.6.0/popper.min.js","index_files/tippy-6.2.7/tippy-bundle.umd.min.js","index_files/tippy-6.2.7/tippy-light-border.css","index_files/tippy-6.2.7/tippy.css","index_files/tippy-6.2.7/tippy.umd.min.js","index_files/webcomponents-2.0.0/webcomponents.js"]}
+  {"type":"character","attributes":{},"value":["FinalProj270.html","FinalProj270_files/anchor-4.2.2/anchor.min.js","FinalProj270_files/bowser-1.9.3/bowser.min.js","FinalProj270_files/distill-2.2.21/template.v2.js","FinalProj270_files/figure-html5/unnamed-chunk-5-1.png","FinalProj270_files/figure-html5/unnamed-chunk-8-1.png","FinalProj270_files/header-attrs-2.29/header-attrs.js","FinalProj270_files/jquery-3.6.0/jquery-3.6.0.js","FinalProj270_files/jquery-3.6.0/jquery-3.6.0.min.js","FinalProj270_files/jquery-3.6.0/jquery-3.6.0.min.map","FinalProj270_files/popper-2.6.0/popper.min.js","FinalProj270_files/tippy-6.2.7/tippy-bundle.umd.min.js","FinalProj270_files/tippy-6.2.7/tippy-light-border.css","FinalProj270_files/tippy-6.2.7/tippy.css","FinalProj270_files/tippy-6.2.7/tippy.umd.min.js","FinalProj270_files/webcomponents-2.0.0/webcomponents.js","index_files/anchor-4.2.2/anchor.min.js","index_files/bowser-1.9.3/bowser.min.js","index_files/data-P8Evn (1).csv","index_files/data-Sc9Xf.csv","index_files/data-x8iSs.csv","index_files/distill-2.2.21/template.v2.js","index_files/figure-html5/unnamed-chunk-4-1.png","index_files/figure-html5/unnamed-chunk-5-1.png","index_files/figure-html5/unnamed-chunk-8-1.png","index_files/header-attrs-2.17/header-attrs.js","index_files/header-attrs-2.28/header-attrs.js","index_files/header-attrs-2.29/header-attrs.js","index_files/jquery-3.6.0/jquery-3.6.0.js","index_files/jquery-3.6.0/jquery-3.6.0.min.js","index_files/jquery-3.6.0/jquery-3.6.0.min.map","index_files/popper-2.6.0/popper.min.js","index_files/PubTrustMediaGraph.png","index_files/tippy-6.2.7/tippy-bundle.umd.min.js","index_files/tippy-6.2.7/tippy-light-border.css","index_files/tippy-6.2.7/tippy.css","index_files/tippy-6.2.7/tippy.umd.min.js","index_files/webcomponents-2.0.0/webcomponents.js"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
   <!--/radix_placeholder_navigation_in_header-->
@@ -1651,18 +1651,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 # ℹ 68 more rows</code></pre>
 </div>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>trust_data_interpolated</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>Year</span>, y <span class='op'>=</span> <span class='va'>Percentage</span>, color <span class='op'>=</span> <span class='va'>Trust_Level</span>, group <span class='op'>=</span> <span class='va'>Trust_Level</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_path.html'>geom_line</a></span><span class='op'>(</span>linewidth <span class='op'>=</span> <span class='fl'>1.5</span><span class='op'>)</span> <span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span></span>
-<span>    title <span class='op'>=</span> <span class='st'>"Public Trust in the Media (1997-2022)"</span>,</span>
-<span>    x <span class='op'>=</span> <span class='st'>"Year"</span>,</span>
-<span>    y <span class='op'>=</span> <span class='st'>"Percentage (%)"</span>,</span>
-<span>    color <span class='op'>=</span> <span class='st'>"Trust Level"</span></span>
-<span>  <span class='op'>)</span> <span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_continuous.html'>scale_x_continuous</a></span><span class='op'>(</span>limits <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1997</span>, <span class='fl'>2022</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
-</div>
-<p><img src="index_files/figure-html5/unnamed-chunk-5-1.png" width="624" /></p>
+<p><img src="index_files/figure-html5/unnamed-chunk-5-1.png" width="2400" /></p>
 </div>
 <h2 id="progress-4">Progress #4</h2>
 <p>Now that we have our graph on public trust in the media, we need to take a look at what the graph tells us.</p>
@@ -1728,23 +1717,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 # ℹ 68 more rows</code></pre>
 </div>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>party_tm_long</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>Year</span>, y <span class='op'>=</span> <span class='va'>Percentage</span>, color <span class='op'>=</span> <span class='va'>Party_perc</span>, group <span class='op'>=</span> <span class='va'>Party_perc</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_path.html'>geom_line</a></span><span class='op'>(</span>linewidth <span class='op'>=</span> <span class='fl'>1.5</span><span class='op'>)</span> <span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span></span>
-<span>    title <span class='op'>=</span> <span class='st'>"Partisan Trust in the Mass Media (1997-2022)"</span>,</span>
-<span>    x <span class='op'>=</span> <span class='st'>"Year"</span>,</span>
-<span>    y <span class='op'>=</span> <span class='st'>"Percentage (%)"</span>,</span>
-<span>    color <span class='op'>=</span> <span class='st'>"Political Party %"</span></span>
-<span>  <span class='op'>)</span> <span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_continuous.html'>scale_x_continuous</a></span><span class='op'>(</span>limits <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1997</span>, <span class='fl'>2022</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_manual.html'>scale_color_manual</a></span><span class='op'>(</span>values <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span></span>
-<span>    <span class='st'>"Democrat %"</span> <span class='op'>=</span> <span class='st'>"royalblue"</span>,</span>
-<span>    <span class='st'>"Republican %"</span> <span class='op'>=</span> <span class='st'>"firebrick3"</span>,</span>
-<span>    <span class='st'>"Independent %"</span> <span class='op'>=</span> <span class='st'>"gold2"</span></span>
-<span>  <span class='op'>)</span><span class='op'>)</span></span></code></pre>
-</div>
-<p><img src="index_files/figure-html5/unnamed-chunk-8-1.png" width="624" /></p>
+<p><img src="index_files/figure-html5/unnamed-chunk-8-1.png" width="2400" /></p>
 </div>
 <p>By looking at this graph, we can see some interesting trends that don’t follow the trends of the US population at large. While trust for independents and Republicans trend down over time, particularly among Republicans following Donald Trump’s election, Democrats’ trust in the mass media grew quite a bit, especially during Trump’s presidency.</p>
 <p>However, in the years immediately before and after Trump’s presidency, Democrats showed a stark decrease in trust, particularly during times of political conflict. This trend could be influenced by factors such as perceived media bias or coverage of the Democratic Party’s political issues.</p>

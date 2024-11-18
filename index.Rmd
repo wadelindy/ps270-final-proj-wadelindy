@@ -82,7 +82,7 @@ trust_data_interpolated <- trustmedialong %>%
 trust_data_interpolated
 ```
 
-```{r}
+```{r, echo=FALSE, fig.width=8, fig.height=6, dpi=300}
 ggplot(trust_data_interpolated, aes(x = Year, y = Percentage, color = Trust_Level, group = Trust_Level)) +
   geom_line(linewidth = 1.5) +
   labs(
@@ -93,6 +93,7 @@ ggplot(trust_data_interpolated, aes(x = Year, y = Percentage, color = Trust_Leve
   ) +
   scale_x_continuous(limits = c(1997, 2022))
 ```
+
 
 ## Progress #4
 
@@ -133,7 +134,7 @@ party_tm_long <- party_tm_long |>
 party_tm_long
 ```
 
-```{r}
+```{r, echo=FALSE, fig.width=8, fig.height=6, dpi=300}
 ggplot(party_tm_long, aes(x = Year, y = Percentage, color = Party_perc, group = Party_perc)) +
   geom_line(linewidth = 1.5) +
   labs(
