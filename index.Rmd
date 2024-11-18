@@ -82,8 +82,10 @@ trust_data_interpolated <- trustmedialong %>%
 trust_data_interpolated
 ```
 
-```{r, echo=FALSE, fig.width=8, fig.height=6, dpi=300}
-ggplot(trust_data_interpolated, aes(x = Year, y = Percentage, color = Trust_Level, group = Trust_Level)) +
+```{r, fig.width=8, fig.height=6, dpi=300}
+mediatrustplot <- ggplot(trust_data_interpolated, 
+                         aes(x = Year, y = Percentage, 
+                             color = Trust_Level, group = Trust_Level)) +
   geom_line(linewidth = 1.5) +
   labs(
     title = "Public Trust in the Media (1997-2022)",
@@ -91,7 +93,13 @@ ggplot(trust_data_interpolated, aes(x = Year, y = Percentage, color = Trust_Leve
     y = "Percentage (%)",
     color = "Trust Level"
   ) +
-  scale_x_continuous(limits = c(1997, 2022))
+  scale_x_continuous(limits = c(1997, 2022)) +
+  scale_color_manual(values = c(
+    "Great Deal %" = "forestgreen",
+    "None At All %" = "red3",
+    "Not Very Much %" = "steelblue2"))
+
+mediatrustplot
 ```
 
 
@@ -134,8 +142,8 @@ party_tm_long <- party_tm_long |>
 party_tm_long
 ```
 
-```{r, echo=FALSE, fig.width=8, fig.height=6, dpi=300}
-ggplot(party_tm_long, aes(x = Year, y = Percentage, color = Party_perc, group = Party_perc)) +
+```{r, fig.width=8, fig.height=6, dpi=300}
+party_tm_plot <- ggplot(party_tm_long, aes(x = Year, y = Percentage, color = Party_perc, group = Party_perc)) +
   geom_line(linewidth = 1.5) +
   labs(
     title = "Partisan Trust in the Mass Media (1997-2022)",
@@ -149,7 +157,8 @@ ggplot(party_tm_long, aes(x = Year, y = Percentage, color = Party_perc, group = 
     "Republican %" = "firebrick3",
     "Independent %" = "gold2"
   ))
-  
+
+party_tm_plot
 ```
 
 By looking at this graph, we can see some interesting trends that don't follow the trends of the US population at large. While trust for independents and Republicans trend down over time, particularly among Republicans following Donald Trump's election, Democrats' trust in the mass media grew quite a bit, especially during Trump's presidency.
