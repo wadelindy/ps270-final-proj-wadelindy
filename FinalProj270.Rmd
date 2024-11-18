@@ -1,0 +1,184 @@
+---
+title: "PS270 Final Project"
+author: "Wade Lindmark"
+description: "A Study On the Modern American Political Partisanship"
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+## Thoughts on my Research
+
+I am interested in exploring data related to political partisanship. We are presently living in an America where people have vastly different perceptions of the other party, demonizing one side or the other. If I can find some studies on it, I think I can do some solid research and come to good conclusions about the state of American polarization today.
+
+## Progress #2
+
+My research question is this:
+
+How has the usage of media over time contributed to political partisanship in the United States?
+
+My hypothesis is that as media has developed over time, from print media to radio to television to our phones, it has paradoxically driven us further apart from one another because it has become so easy to take what is seen on social media or the mainstream media as true. In essence, my hypothesis is that, as media has developed, political partisanship has increased, and will continue to. 
+
+In order to measure this, my explanatory value will be a time-series data set that will observe how Americans' trust in media has changed over time as it has changed with trust in government.
+
+For my variable of interest, I want to look at trust indicators observing how a given individual affiliated with a certain party changes their degree of distrust towards the mainstream media, or by tracking respondents' beliefs of what the other side thinks of themselves through cognitive dissonance. I would measure it by asking respondents to answer where they believe the other party falls on a certain issue, with 1 being least extreme and 100 being most extreme.
+
+If the observed pattern demonstrates that individuals who are largely gathering information from very partisan outlets are progressively growing in their distrust of the opposition party or of their key positions. For the sources themselves, it would show their readers/viewers having more distrust for the opposition the farther away from center the source shifts.
+
+If a pattern were to show that media sources shifting their ideology is not correlated with increased rates of distrust of the opposition among their readers/viewers, or if individuals' usage of more partisan news sources over time does not indicate increased distrust towards the opposition, those indicators would disprove my hypothesis.
+
+## Progress #3
+
+I've imported two datasets, `trustgovt`, and `trustinmedia`. I'm going to edit them so that they fit the time-series data I'm looking to create.
+
+```{r}
+library(tidyverse)
+library(infer)
+library(dplyr)
+```
+
+```{r}
+trustwmedia <- read_csv("index_files/data-P8Evn (1).csv")
+
+colnames(trustwmedia) <- trustwmedia[1, ]
+
+trustwmedia <- trustwmedia[-c(1:3), ]
+
+colnames(trustwmedia) <- c("Year", "Great Deal %", "Not Very Much %", "None At All %")
+
+trustwmedia
+```
+
+Now, I've loaded and modified my data as needed, it's time to create some graphs.
+
+
+```{r}
+trustmedialong <- trustwmedia |>
+  pivot_longer(cols = c("Great Deal %", "Not Very Much %", "None At All %"),
+               names_to = "Trust_Level",
+               values_to = "Percentage")
+
+trustmedialong
+```
+
+```{r}
+trustmedialong$Year <- as.numeric(as.character(trustmedialong$Year))
+
+trust_data_interpolated <- trustmedialong %>%
+  group_by(Trust_Level) %>%
+  do({
+    approx_data <- approx(
+      x = .$Year, 
+      y = .$Percentage, 
+      xout = c(2006)
+    )
+    new_row <- data.frame(Year = 2006, 
+                          Percentage = approx_data$y,
+                          Trust_Level = .$Trust_Level[1])
+    rbind(., new_row)
+  }) %>%
+  ungroup()
+
+trust_data_interpolated
+```
+
+```{r}
+ggplot(trust_data_interpolated, aes(x = Year, y = Percentage, color = Trust_Level, group = Trust_Level)) +
+  geom_line(linewidth = 1.5) +
+  labs(
+    title = "Public Trust in the Media (1997-2022)",
+    x = "Year",
+    y = "Percentage (%)",
+    color = "Trust Level"
+  ) +
+  scale_x_continuous(limits = c(1997, 2022))
+```
+
+## Progress #4
+
+Now that we have our graph on public trust in the media, we need to take a look at what the graph tells us.
+
+First off, the Great Deal % line tells us where observants reported having a "great deal of trust" in the media. As such, the None At All % line and Not very Much % line indicate no trust in the media and difficulty in trusting the media, respectively.
+
+There's a few trends we can analyze here. Beginning at the start of the dataset, in the year 1999, we see over 50% trust in the media, a level that rapidly declines for a decade and a half before hitting a low point at 32% in 2016, the year Donald Trump was first elected to the presidency. This specific issue is a bit of an outlier, since trust in the media plummeted due to the allegations of Russian involvement to sway the results of the 2016 election.
+
+A similar conclusion can be drawn from the green line here, the line that represents little to no trust in the media at all. Over the timeframe the data shows a steadily increasing percentage of the American populace not trusting the mainstream media.
+
+However, in the interest of answering our research question, we need to take a look at how people affiliated with certain political parties trust the media, and how people trust one another.
+
+Let's look at a change over this timeframe with trust of certain political parties in the mainstream media (and is there a pattern?)
+
+```{r}
+partytrust_m <- read_csv("index_files/data-Sc9Xf.csv")
+
+colnames(partytrust_m) <- partytrust_m[1, ]
+
+partytrust_m <- partytrust_m[-c(1:3), ]
+
+colnames(partytrust_m) <- c("Year", "Republican %", "Independent %", "Democrat %")
+
+partytrust_m
+```
+
+```{r}
+party_tm_long <- partytrust_m |>
+  pivot_longer(cols = c("Republican %", "Independent %", "Democrat %"),
+               names_to = "Party_perc",
+               values_to = "Percentage")
+
+party_tm_long <- party_tm_long |>
+  mutate(Percentage = as.numeric(gsub("%", "", Percentage))) |>
+  group_by(Year)
+
+party_tm_long
+```
+
+```{r}
+ggplot(party_tm_long, aes(x = Year, y = Percentage, color = Party_perc, group = Party_perc)) +
+  geom_line(linewidth = 1.5) +
+  labs(
+    title = "Partisan Trust in the Mass Media (1997-2022)",
+    x = "Year",
+    y = "Percentage (%)",
+    color = "Political Party %"
+  ) +
+  scale_x_continuous(limits = c(1997, 2022)) +
+  scale_color_manual(values = c(
+    "Democrat %" = "royalblue",
+    "Republican %" = "firebrick3",
+    "Independent %" = "gold2"
+  ))
+  
+```
+
+By looking at this graph, we can see some interesting trends that don't follow the trends of the US population at large. While trust for independents and Republicans trend down over time, particularly among Republicans following Donald Trump's election, Democrats' trust in the mass media grew quite a bit, especially during Trump's presidency.
+
+However, in the years immediately before and after Trump's presidency, Democrats showed a stark decrease in trust, particularly during times of political conflict. This trend could be influenced by factors such as perceived media bias or coverage of the Democratic Party’s political issues. 
+
+Conversely, Republicans tend to have fluctuating levels of trust, with an evident increase in trust during Republican administrations, especially under George W. Bush, where media outlets were often critical of the Democratic Party. This pattern is closely tied to the framing of political events, as Republican media outlets tend to present news in a more favorable light for their party, which may explain the growing trust among their base during Republican leadership.
+
+This is a clear indicator of the rising role of media in creating polarization. Republicans have framed mass media as "fake news," alleging mass media to be actively mischaracterizing the actions of Republican governments and covering up fraud of Democratic governments.
+
+This partisan divide in media trust is significant because it suggests a polarization in public opinion, with individuals more likely to trust media that aligns with their political views and narratives. The data shows that Independents, who do not align with either party, have consistently shown lower levels of trust in the media overall. This could indicate that these individuals view the media as too partisan or unreliable, contributing to a sense of distrust across the board.
+
+Thus, if we are to answer this question further, we must also collect information on trust in fellow Americans and the American government as a whole. Both have trended down since Richard Nixon's Watergate scandal caused his resignation in August of 1974, but looking more closely at these values could indicate specific years or trends that we ought to investigate further.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
