@@ -7,11 +7,9 @@ output:
     self_contained: false
 ---
 
-## Thoughts on my Research
+## Introduction
 
 I am interested in exploring data related to political partisanship. We are presently living in an America where people have vastly different perceptions of the other party, demonizing one side or the other. If I can find some studies on it, I think I can do some solid research and come to good conclusions about the state of American polarization today.
-
-## Progress #2
 
 My research question is this:
 
@@ -27,85 +25,177 @@ If the observed pattern demonstrates that individuals who are largely gathering 
 
 If a pattern were to show that media sources shifting their ideology is not correlated with increased rates of distrust of the opposition among their readers/viewers, or if individuals' usage of more partisan news sources over time does not indicate increased distrust towards the opposition, those indicators would disprove my hypothesis.
 
-## Progress #3
+Let's create a hypothesis test to observe if my theory holds up.
 
-I've imported two datasets, `trustgovt`, and `trustinmedia`. I'm going to edit them so that they fit the time-series data I'm looking to create.
+{
 
-```{r}
+Hypothesis
+
+}
+
+## Data
+
+I've imported four datasets, `partytrustmedia`, `trustwmedia`, `partytrustgovt`, and `trustwgovt`. The first two datasets are from a Gallup poll conducting historical trends in media over the years 1976 to 2022. I'm going to edit them so that they fit the time-series data I'm looking to create. To create a more cohesive time period, for each dataset, I will be excluding data before 1997 and interpolate for the year 2006 since the data from 2006 was not included within the Gallup data. There are only 3 years included in the data over the period 1972-1997, and any interpolation between these years would likely misrepresent the opinions of the American populace at that given moment; as such, I will be excluding all data prior to 1997. 
+
+The data on trust in government are obtained from a survey from the Pew Research Center over the years 1958-2024. Multiple observations from a single year are averaged over that year, and I will be placing the same time constraints over the government data sets, from 1997-2022, in order to observe if there was a significant pattern between trust in media and trust in government over the 25-year time period.
+
+```{r, echo = FALSE}
 library(tidyverse)
 library(infer)
+library(readr)
 library(dplyr)
 ```
 
-```{r}
+```{r, echo = FALSE}
 trustwmedia <- read_csv("index_files/data-P8Evn (1).csv")
 
 colnames(trustwmedia) <- trustwmedia[1, ]
 
 trustwmedia <- trustwmedia[-c(1:3), ]
 
-colnames(trustwmedia) <- c("Year", "Great Deal %", "Not Very Much %", "None At All %")
+colnames(trustwmedia) <- c("Date", "Great Deal %", "Not Very Much %", "None At All %")
 
-trustwmedia
-```
-
-Now, I've loaded and modified my data as needed, it's time to create some graphs.
-
-
-```{r}
 trustmedialong <- trustwmedia |>
   pivot_longer(cols = c("Great Deal %", "Not Very Much %", "None At All %"),
                names_to = "Trust_Level",
                values_to = "Percentage")
 
-trustmedialong
-```
+trustmedialong$Date <- as.numeric(as.character(trustmedialong$Date))
 
-```{r}
-trustmedialong$Year <- as.numeric(as.character(trustmedialong$Year))
-
-trust_data_interpolated <- trustmedialong %>%
-  group_by(Trust_Level) %>%
+trust_data_interpolated <- trustmedialong |>
+  group_by(Trust_Level) |>
   do({
     approx_data <- approx(
-      x = .$Year, 
+      x = .$Date, 
       y = .$Percentage, 
       xout = c(2006)
     )
-    new_row <- data.frame(Year = 2006, 
+    new_row <- data.frame(Date = 2006, 
                           Percentage = approx_data$y,
                           Trust_Level = .$Trust_Level[1])
     rbind(., new_row)
-  }) %>%
+  }) |>
   ungroup()
 
-trust_data_interpolated
+trust_data_interpolated$Date <- as.numeric(trust_data_interpolated$Date)
+
+trust_data_interpolated <- trust_data_interpolated |> arrange(Date)
+
+knitr::kable(trust_data_interpolated)
 ```
 
-```{r, fig.width=8, fig.height=6, dpi=300}
+Now, I've loaded and modified my data as needed, it's time to create a time-series graph that tracks different levels of American trust in the media. Let's take a look.
+
+```{r, fig.width=8, fig.height=6, dpi=300, echo = FALSE}
 mediatrustplot <- ggplot(trust_data_interpolated, 
-                         aes(x = Year, y = Percentage, 
+                         aes(x = Date, y = Percentage, 
                              color = Trust_Level, group = Trust_Level)) +
   geom_line(linewidth = 1.5) +
   labs(
-    title = "Public Trust in the Media (1997-2022)",
-    x = "Year",
+    title = "Average Public Trust in the American Mass Media (1997-2022)",
+    x = "Date",
     y = "Percentage (%)",
     color = "Trust Level"
   ) +
   scale_x_continuous(limits = c(1997, 2022)) +
   scale_color_manual(values = c(
     "Great Deal %" = "forestgreen",
-    "None At All %" = "red3",
-    "Not Very Much %" = "steelblue2"))
+    "Not Very Much %" = "steelblue2",
+    "None At All %" = "chocolate2")) +
+  theme_bw()
 
 mediatrustplot
 ```
 
+This graph points to some very interesting trends, but let's make some more graphs before we make any further assumptions.
 
-## Progress #4
+We also want to take a look at political parties' trust in the media, shown below. Here, I'm going to code to interpolate for the year 2006, after which I will proceed to pivot the data out.
 
-Now that we have our graph on public trust in the media, we need to take a look at what the graph tells us.
+```{r, echo = FALSE}
+partytrustmedia <- read_csv("index_files/data-Sc9Xf.csv")
+
+colnames(partytrustmedia) <- partytrustmedia[1, ]
+partytrustmedia <- partytrustmedia[-c(1:3), ]
+
+colnames(partytrustmedia) <- c("Date", "Republican %", "Independent %", "Democrat %")
+
+partytrustmedia$Date <- as.numeric(partytrustmedia$Date)
+
+partytrustmedia <- partytrustmedia |> arrange(Date)
+
+party_tm_long <- partytrustmedia |>
+  pivot_longer(cols = c("Republican %", "Independent %", "Democrat %"),
+               names_to = "Party_perc",
+               values_to = "Percentage")
+
+party_tm_long <- party_tm_long |>
+  mutate(Percentage = as.numeric(gsub("%", "", Percentage))) |>
+  group_by(Date)
+
+knitr::kable(party_tm_long)
+```
+Once again, let's create a time-series plot for trust in media by political party.
+
+```{r, fig.width=8, fig.height=6, dpi=300, echo = FALSE}
+party_tm_plot <- ggplot(party_tm_long, aes(x = Date, y = Percentage, color = `Party_perc`, group = `Party_perc`)) +
+  geom_line(linewidth = 1.5) +
+  labs(
+    title = "Average Partisan Trust in the American Mass Media (1997-2022)",
+    x = "Date",
+    y = "Percentage (%)",
+    color = "Political Party %"
+  ) +
+  scale_x_continuous(limits = c(1997, 2022)) +
+  scale_color_manual(values = c(
+    "Democrat %" = "royalblue1",
+    "Republican %" = "firebrick2",
+    "Independent %" = "gold2"
+  )) +
+  theme_bw()
+
+party_tm_plot
+```
+
+Now, let's look at the trust in government plots. This should allow us to compare the two datasets.
+
+```{r, echo = FALSE}
+trustwgovt <- read_csv("index_files/pubtrustgovt.csv")
+
+trustwgovtclean <- trustwgovt |>
+  select(-pollster, - Indivpolls, -Movavg)
+
+trustwgovtclean <- trustwgovtclean[-c(1:2), ]
+
+trustwgovtclean <- trustwgovtclean[-c(27:159), ]
+
+knitr::kable(trustwgovtclean)
+```
+[say something about graph]
+
+```{r, echo = FALSE}
+govttrustplot <- ggplot(trustwgovtclean, aes(x = Date, y = Movavgyr, color = "Trust %")) +
+  geom_line(linewidth = 1.5) +
+  labs(
+    title = "Average Public Trust in the American Government (1997-2022)",
+    x = "Date",
+    y = "Percentage (%)",
+    color = "Trust Line (%)"
+  ) +
+  scale_color_manual(values = c("Trust %" = "darkorchid3")) +
+  theme_bw()
+
+govttrustplot
+```
+
+Like with the media, let's take a look at each party's trust in government more broadly, demonstrated in the following dataset and the plot which follows.
+
+
+
+## Analysis
+
+Now that we have our graph on public trust in the media, and separate parties' trust in media, we need to take a look at what the graphs tell us.
+
+Let's begin with the time-series graph for the broader public.
 
 First off, the Great Deal % line tells us where observants reported having a "great deal of trust" in the media. As such, the None At All % line and Not very Much % line indicate no trust in the media and difficulty in trusting the media, respectively.
 
@@ -113,55 +203,7 @@ There's a few trends we can analyze here. Beginning at the start of the dataset,
 
 A similar conclusion can be drawn from the green line here, the line that represents little to no trust in the media at all. Over the timeframe the data shows a steadily increasing percentage of the American populace not trusting the mainstream media.
 
-However, in the interest of answering our research question, we need to take a look at how people affiliated with certain political parties trust the media, and how people trust one another.
-
-Let's look at a change over this timeframe with trust of certain political parties in the mainstream media (and is there a pattern?)
-
-```{r}
-partytrust_m <- read_csv("index_files/data-Sc9Xf.csv")
-
-colnames(partytrust_m) <- partytrust_m[1, ]
-
-partytrust_m <- partytrust_m[-c(1:3), ]
-
-colnames(partytrust_m) <- c("Year", "Republican %", "Independent %", "Democrat %")
-
-partytrust_m
-```
-
-```{r}
-party_tm_long <- partytrust_m |>
-  pivot_longer(cols = c("Republican %", "Independent %", "Democrat %"),
-               names_to = "Party_perc",
-               values_to = "Percentage")
-
-party_tm_long <- party_tm_long |>
-  mutate(Percentage = as.numeric(gsub("%", "", Percentage))) |>
-  group_by(Year)
-
-party_tm_long
-```
-
-```{r, fig.width=8, fig.height=6, dpi=300}
-party_tm_plot <- ggplot(party_tm_long, aes(x = Year, y = Percentage, color = Party_perc, group = Party_perc)) +
-  geom_line(linewidth = 1.5) +
-  labs(
-    title = "Partisan Trust in the Mass Media (1997-2022)",
-    x = "Year",
-    y = "Percentage (%)",
-    color = "Political Party %"
-  ) +
-  scale_x_continuous(limits = c(1997, 2022)) +
-  scale_color_manual(values = c(
-    "Democrat %" = "royalblue",
-    "Republican %" = "firebrick3",
-    "Independent %" = "gold2"
-  ))
-
-party_tm_plot
-```
-
-By looking at this graph, we can see some interesting trends that don't follow the trends of the US population at large. While trust for independents and Republicans trend down over time, particularly among Republicans following Donald Trump's election, Democrats' trust in the mass media grew quite a bit, especially during Trump's presidency.
+By looking at the graph of different political parties' trust in media, we can see some interesting trends that don't follow the trends of the US population at large. While trust for independents and Republicans trend down over time, particularly among Republicans following Donald Trump's election, Democrats' trust in the mass media grew quite a bit, especially during Trump's presidency.
 
 However, in the years immediately before and after Trump's presidency, Democrats showed a stark decrease in trust, particularly during times of political conflict. This trend could be influenced by factors such as perceived media bias or coverage of the Democratic Party’s political issues. 
 
