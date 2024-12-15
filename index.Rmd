@@ -109,6 +109,8 @@ mediatrustplot <- ggplot(trust_data_interpolated,
     "Not Very Much %" = "gray50",
     "None At All %" = "black")) + 
   theme_bw()
+
+mediatrustplot
 ```
 
 This graph points to some very interesting trends, but let's make some more graphs. We see the level of great deals of trust in the media trending heavily downwards and no trust at all at nearly 40% in 2022. That leads to a pretty clear idea of trust patterns in the American media, but is this being influenced by one party's trust in the media over the other?
@@ -157,6 +159,8 @@ party_tm_plot <- ggplot(party_tm_long, aes(x = Date, y = Percentage, color = `Pa
     "Republican %" = "firebrick2"
   )) +
   theme_bw()
+
+party_tm_plot
 ```
 This graph demonstrates where the high levels and low levels of trust in the media are coming from; this quantifies for us the source of the distrust, and where we can draw conclusions about modern trust in American media.
 
@@ -189,6 +193,8 @@ govttrustplot <- ggplot(trustwgovtclean, aes(x = Date, y = `Average Trust %`, co
   ) +
   scale_color_manual(values = c("Trust %" = "darkorchid3")) +
   theme_bw()
+
+govttrustplot
 ```
 Like with the media, let's take a look at each party's trust in government more broadly, demonstrated in the following dataset, and the plot which follows.
 
@@ -224,6 +230,8 @@ partygvtplot <- ggplot(partygvtlong, aes(x = Date, y = Percentage, color = `Part
     "Republican %" = "indianred1"
   )) +
   theme_bw()
+
+partygvtplot
 ```
 
 Now that we have our four datasets and four graphs all laid out, let's combine our general data (from the Great Deal % statistic from the first graph, and the plotted line from our government trust graph). This will allow us to better analyze our hypothesis test and conduct a regression.
@@ -255,7 +263,13 @@ Let's begin with the time-series graph for the broader public on trust in media,
 mediatrustplot
 ```
 
-First off, the Great Deal % line, in light gray, tells us where observants reported having a "great deal of trust" in the media. As such, the None At All % line and Not very Much % line indicate no trust in the media and difficulty in trusting the media, respectively. There's a few trends we can analyze here. Beginning at the start of the dataset, in the year 1999, we see over 50% trust in the media, a level that rapidly declines for a decade and a half before hitting a low point at 32% in 2016, the year Donald Trump was first elected to the presidency; this specific data point can be likely attributed to Russian interference in the 2016 election. A similar conclusion can be drawn from the black line here, the line that represents little to no trust in the media at all. Over the timeframe the data shows a steadily increasing percentage of the American populace not trusting the mainstream media. But what's the case for separate political parties?
+The Great Deal % line, depicted in light gray, represents respondents who reported having a "great deal of trust" in the media, serving as a metric for high confidence in its credibility. Meanwhile, the None At All % line and the Not Very Much % line illustrate respondents who either expressed no trust in the media or indicated difficulty in trusting it, respectively. Together, these lines help us understand the public's shifting attitudes toward the media over time.
+
+Several noteworthy trends emerge from this data. At the outset of the dataset in 1999, over 50% of respondents expressed a significant degree of trust in the media. However, this trust began to erode steadily, experiencing a sharp decline over the next decade and a half. By 2016, the percentage of Americans who reported trusting the media dropped to a low of 32%. This marked a pivotal year coinciding with Donald Trump's election to the presidency. The decline in trust during this period may be linked to significant events such as Russian interference in the 2016 election, which undermined confidence in media reporting and fueled accusations of bias from all sides of the political spectrum.
+
+The None At All % line, which represents the segment of the population expressing no trust in the media, tells a complementary story. Over the same time frame, this line exhibits a steady and significant increase, reflecting a growing portion of the American populace entirely disengaged from mainstream media narratives. This trend signals a profound shift in the public's relationship with information sources and suggests deeper divisions regarding perceptions of media reliability and objectivity.
+
+But to fully understand these dynamics, we must look beyond the aggregate numbers and examine the data through a partisan lens. How do these trends vary among Democrats and Republicans?
 
 ```{r, fig.width=8, fig.height=6, dpi=300, echo = FALSE}
 party_tm_plot
@@ -279,9 +293,11 @@ A closer analysis of how trust in government fluctuates among Democrats, Republi
 ```{r, fig.width=8, fig.height=6, dpi=300, echo = FALSE}
 partygvtplot
 ```
-Here, we see trust in government among Republicans and Democrats swings widely over time; this is clearly attributable to presidential terms. From 1997-2001, Bill Clinton was in power and demonstrated more trust from Democrats, then from 2001-2009, Republicans had more trust in government with George W. Bush in power. The same trend follows for the terms of Obama (Democrat, 2009-2017); Trump (Republican, 2017-2021); and Biden (Democrat, 2021-present, but up until 2022 in our dataset). 
+The data reveals significant fluctuations in trust in government among Republicans and Democrats, with these swings closely correlating to presidential administrations. This pattern suggests that trust in government is heavily influenced by partisan alignment with the party holding executive power. From 1997 to 2001, during Bill Clinton’s presidency, Democrats reported higher levels of trust in government, reflecting their alignment with the Democratic administration. This dynamic shifted dramatically between 2001 and 2009, as George W. Bush, a Republican, assumed office. During this period, trust among Republicans surged, while trust among Democrats declined. The same pattern recurred during subsequent presidencies. Barack Obama’s two terms (2009-2017) saw higher levels of trust among Democrats, while trust among Republicans dropped, and vice versa with Donald Trump’s presidency (2017-2021). The dataset, which extends to 2022, includes the early years of Joe Biden’s administration, showing yet another shift in trust back toward Democrats.
 
-Ultimately, we've been able to come to some conclusions about each graph and what they demonstrate, backing them up with historical evidence for the patterns shown in each of the graphs, showing broadly that trust in media and trust in government decreased broadly over the time frame of 1997-2022. Now, we should conduct a regression to observe whether our data is statistically significant and if we can interpret media trust as an effective predictor for trust in American government.
+This cyclical trend underscores how partisan alignment with the executive branch shapes perceptions of government trustworthiness. These swings likely stem from how individuals perceive the policies and priorities of the administration in power, as well as broader political narratives framing the government’s performance. For example, Republican trust in government may have been buoyed during Trump’s presidency due to shared ideological goals, while Democratic trust likely reflected similar alignment during Obama and Biden’s terms. Conversely, opposition parties often express diminished trust in government, possibly due to skepticism about policies, leadership, or overall governance. This phenomenon, overall, illustrates the deep polarization in American political culture.
+
+Ultimately, we've been able to come to some preliminary conclusions about each graph and what they demonstrate, backing them up with historical evidence for the patterns shown in each of the graphs, showing broadly that trust in media and trust in government decreased broadly over the time frame of 1997-2022. Now, we should conduct a regression to observe whether our data is statistically significant and if we can interpret media trust as an effective predictor for trust in American government.
 
 # Regression
 
