@@ -30,6 +30,7 @@ Let's create a hypothesis test to observe if my theory holds up; it will be a tw
 # Trust in Media v. Government in General: Hypothesis Test
 
 𝐻0: No significant difference in trends between media trust and government trust.
+
 𝐻1: Significant differences in trends over time.
 
 Let's look at the data.
@@ -319,3 +320,7 @@ By rejecting the null hypothesis, our analysis provides strong evidence that tru
 These findings align with theories that suggest media trust acts as both a barometer and an influencer of public confidence in government. The increasing polarization of media consumption, with individuals gravitating toward partisan outlets, may exacerbate distrust in institutions perceived to represent opposing political views. As demonstrated in the partisan breakdown of media trust, Republicans and Democrats exhibit starkly divergent trends, reflecting broader divisions in how Americans engage with information sources. This polarization, in turn, is mirrored in their attitudes toward government, with trust levels fluctuating according to which party controls the presidency.
 
 The declining levels of trust in both the media and government across the broader public highlight a feedback loop of institutional distrust. A less trusted media may contribute to a populace that is less informed—or misinformed—about governmental actions, thereby undermining faith in government’s ability to act competently or fairly. Conversely, a government that fails to foster trust in its institutions may leave citizens skeptical of the media that reports on its activities. The interplay between these two forces could further destabilize democratic norms, as public skepticism grows toward both media and government entities; the patterns shown in the graphs in this report have shown a consistent decrease in trust over time. If either variable of trust continues to follow this decrease, judging by the conclusions of this report, trust will continue to be eroded across both institutions. To theorize, America's trust in the government and media could mean general erosion of trust between people themselves. Ultimately, trust is the cornerstone of a functioning democracy. Rebuilding this trust—both in media and in government—requires a concerted effort to bridge the growing divides in how Americans perceive these institutions and each other. Without this trust, the ability of citizens to engage meaningfully in democratic processes and hold leaders accountable may be fundamentally compromised, and along with it, American institutions.
+
+```{r, echo = FALSE}
+
+```
