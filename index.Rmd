@@ -109,8 +109,6 @@ mediatrustplot <- ggplot(trust_data_interpolated,
     "Not Very Much %" = "gray50",
     "None At All %" = "black")) + 
   theme_bw()
-
-mediatrustplot
 ```
 
 This graph points to some very interesting trends, but let's make some more graphs. We see the level of great deals of trust in the media trending heavily downwards and no trust at all at nearly 40% in 2022. That leads to a pretty clear idea of trust patterns in the American media, but is this being influenced by one party's trust in the media over the other?
@@ -159,8 +157,6 @@ party_tm_plot <- ggplot(party_tm_long, aes(x = Date, y = Percentage, color = `Pa
     "Republican %" = "firebrick2"
   )) +
   theme_bw()
-
-party_tm_plot
 ```
 This graph demonstrates where the high levels and low levels of trust in the media are coming from; this quantifies for us the source of the distrust, and where we can draw conclusions about modern trust in American media.
 
@@ -193,8 +189,6 @@ govttrustplot <- ggplot(trustwgovtclean, aes(x = Date, y = `Average Trust %`, co
   ) +
   scale_color_manual(values = c("Trust %" = "darkorchid3")) +
   theme_bw()
-
-govttrustplot
 ```
 Like with the media, let's take a look at each party's trust in government more broadly, demonstrated in the following dataset, and the plot which follows.
 
@@ -230,8 +224,6 @@ partygvtplot <- ggplot(partygvtlong, aes(x = Date, y = Percentage, color = `Part
     "Republican %" = "indianred1"
   )) +
   theme_bw()
-
-partygvtplot
 ```
 
 Now that we have our four datasets and four graphs all laid out, let's combine our general data (from the Great Deal % statistic from the first graph, and the plotted line from our government trust graph). This will allow us to better analyze our hypothesis test and conduct a regression.
