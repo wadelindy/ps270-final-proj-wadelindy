@@ -147,8 +147,8 @@ party_tm_plot <- ggplot(party_tm_long, aes(x = Date, y = Percentage, color = `Pa
   ) +
   scale_x_continuous(limits = c(1997, 2022)) +
   scale_color_manual(values = c(
-    "Democrat %" = "royalblue1",
-    "Republican %" = "firebrick2",
+    "Democrat %" = "royalblue2",
+    "Republican %" = "firebrick3",
     "Independent %" = "gold2"
   )) +
   theme_bw()
@@ -188,6 +188,43 @@ govttrustplot
 ```
 
 Like with the media, let's take a look at each party's trust in government more broadly, demonstrated in the following dataset and the plot which follows.
+
+```{r, echo = FALSE}
+partytrustgovt <- read_csv("index_files/partytrustgovt.csv")
+
+partytrustgovt <- partytrustgovt |>
+  select(-pollster)
+
+partytrustgovt <- partytrustgovt[-c(29:153), ]
+
+partygvtlong <- partytrustgovt |>
+  pivot_longer(cols = c("Democrat %", "Republican %"),
+               names_to = "Party Affiliation",
+               values_to = "Percentage")
+
+knitr::kable(partygvtlong)
+```
+Graph time again
+
+```{r, echo = FALSE}
+partygvtplot <- ggplot(partygvtlong, aes(x = Date, y = Percentage, color = `Party Affiliation`, group = `Party Affiliation`)) +
+  geom_line(linewidth = 1.5) +
+  labs(
+    title = "Average Partisan Trust in the American Government (1997-2022)",
+    x = "Date",
+    y = "Percentage (%)",
+    color = "Political Party %"
+  ) +
+  scale_x_continuous(limits = c(1997, 2022)) +
+  scale_color_manual(values = c(
+    "Democrat %" = "skyblue2",
+    "Republican %" = "indianred1"
+  )) +
+  theme_bw()
+
+partygvtplot
+```
+
 
 
 
